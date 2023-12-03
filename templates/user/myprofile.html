@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<script src="{% static 'js/jquery-3.6.1.min.js' %}"></script>
+<script>
+    $(document).ready(function(){
+    $("#btne").click(function(){
+    $(".uform").slideToggle(2000)
+    })
+    })
+
+</script>
+{% if not request.session.userid %}
+
+<script >
+    alert('you have login first')
+    location.href="/user/signin/"
+</script>
+{% endif %}
+<div class="text-center py-3 fs-2">
+    My  <b class="txt_wcolor">Profile <i class="fa-solid  txt_wcolor"></i></b></b>
+</div>
+<div class="row">
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8">
+        <div class="row">
+            <!-- start card  -->
+{% for x in mdata %}
+            <div class="card mb-3 w-100" >
+  <div class="row g-0">
+    <div class="col-md-4 p-3">
+      <img src="/{{request.session.userpic}}" style="min-height:200px;" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+          <p class="card title">
+               <h5 class="card-title">{{x.name}}</h5>
+              <b>Mobile :{{x.mobile}}</b></br>
+              <b>Email :{{x.email}}</b></br>
+              <b>Password :{{x.Paaswd}}</b></br>
+              <b>Address :{{x.message}}</b></br>
+              <a href="#" id="btne" class="btn  bg-wcolor float-end">Edit Profile</a>
+
+          </p>
+
+      </div>
+    </div>
+  </div>
+</div>
+            <!--end card  --->
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col-sm-2"></div>
+</div>
+<!--        start form    --->
+<style>
+    .txt{
+    height:37px;
+    }
+    .txta{
+    height:50px;
+    width:50px;
+    }
+    .txti{
+
+    width:50px;
+    }
+     .taxti{
+    height:50px;
+    }
+    .rgba2{
+    background:url('{% static "images/shopping.jpg" %}');
+    background-size:100% 100%;
+    height:550px;
+    width:100%;
+    }
+    .uform{
+    display:none;
+    }
+
+</style>
+
+<div class="row my-5 uform" >
+    <div class="col-sm-2"></div>
+    <div class="col-sm-8  bg p-5 rounded bg-light ">
+        {% if msg %}
+        <div class="alert alert-success">Your Registration succesfull</div>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            <div class="input-group mb-3 input">
+                <i class="input-group-text bg-bcolor text-light txti  ps-3"><i class="fa-solid fa-user fs-5"></i></i>
+                <input type="text" name="name"  class="form-control txt"placeholder="Your Name"/>
+            </div>
+
+             <div class="input-group mb-3 input">
+                <i class="input-group-text bg-bcolor text-light txti  ps-3"><i class="fa-solid fa-phone fs-5"></i></i>
+                <input type="text" name="mob"  class="form-control  txt" placeholder="Your Mobile"></input>
+            </div>
+
+            <div class="input-group mb-3 input">
+                <i class="input-group-text bg-bcolor text-light txti ps-3"><i class="fa-solid fa-key fa-spin fs-5"></i></i>
+                <input type="password" name="passwd"  class="form-control  txt"placeholder="Enter your password"/>
+            </div>
+
+            <div class="input-group mb-3 input txt fs-5">
+                <input type="file" name="upic"  class="form-control  txt"/>
+            </div>
+
+            <div class="input-group mb-3 input">
+                <i class="input-group-text bg-bcolor txti text-light ps-3"><i class="fa-solid fa-message fs-5"></i></i>
+            <textarea class="form-control txta taxti " name="msg" placeholder="Message"></textarea>
+            </div>
+            <input type="checkbox" />Terms and conditions
+            <div class="input-group mb-3 input">
+                <input type="submit" value="Sign Up" class=" btn btn-primary   mt-2" style="width:100%; height:40px;"/>
+            </div>
+            <div class="row text-center">
+                <div class="col-sm-6">Already a member?</div>
+                <div class="col-sm-6 text-center">Go To <a class="text-center" href="/user/signin/">Sign in</a></div>
+
+            </div>
+
+
+
+
+        </form>
+
+    </div>
+    <div class="col-sm-2"></div>
+
+</div>
+
+<!--        end form    --->
+
+{%  endblock%}

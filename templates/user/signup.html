@@ -1,0 +1,94 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .txt{
+    height:37px;
+    }
+    .txta{
+    height:50px;
+    width:50px;
+    }
+    .txti{
+
+    width:50px;
+    }
+     .taxti{
+    height:50px;
+    }
+    .rgba2{
+    background:url('{% static "images/shopping.jpg" %}');
+    background-size:100% 100%;
+    height:550px;
+    width:100%;
+    }
+
+</style>
+<div class=" fs-3 mt-3 text-center ">Register <b class="txt_wcolor"> Here</b></div>
+<div class="row my-5" >
+    <div class="col-sm-1"></div>
+    <div class="col-sm-4 bg-light  ">
+        <div class="row ">
+            <div class="col-sm-12 rgba2 px-0  text-light rounded-1" >
+                 <h3 style="padding-top:330px; text-align:center;" class="my-3">Get Started</h3>
+                <p class="text-center py-1 border border-light mx-5"><a href="#" class="text-light text-center" style="text-decoration:none;">Sign in with Google </a></p>
+                <p class="text-center py-1 border border-light mx-5"><a href="#" class="text-light text-center" style="text-decoration:none;">Sign in with facebook </a></p>
+            </div>
+        </div>
+
+
+    </div>
+    <div class="col-sm-6  bg p-5 rounded bg-light">
+        {% if msg %}
+        <div class="alert alert-success">Your Registration succesfull</div>
+        {% endif %}
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="input-group mb-3 input">
+                <i class="input-group-text bg-bcolor text-light txti  ps-3"><i class="fa-solid fa-user fs-5"></i></i>
+                <input type="text" name="name"  class="form-control txt"placeholder="Your Name"/>
+            </div>
+
+             <div class="input-group mb-3 input">
+                <i class="input-group-text bg-bcolor text-light txti  ps-3"><i class="fa-solid fa-phone fs-5"></i></i>
+                <input type="text" name="mob"  class="form-control  txt" placeholder="Your Mobile"></input>
+            </div>
+
+            <div class="input-group mb-3 input">
+                <i class="input-group-text bg-bcolor text-light txti  ps-3"><i class="fa-solid fa-envelope fs-5"></i></i>
+                <input type="text" name="email"  class="form-control  txt"placeholder="Your Email"/>
+            </div>
+            <div class="input-group mb-3 input">
+                <i class="input-group-text bg-bcolor text-light txti ps-3"><i class="fa-solid fa-key fa-spin fs-5"></i></i>
+                <input type="password" name="passwd"  class="form-control  txt"placeholder="Enter your password"/>
+            </div>
+
+            <div class="input-group mb-3 input txt fs-5">
+                <input type="file" name="upic"  class="form-control  txt"/>
+            </div>
+
+            <div class="input-group mb-3 input">
+                <i class="input-group-text bg-bcolor txti text-light ps-3"><i class="fa-solid fa-message fs-5"></i></i>
+            <textarea class="form-control txta taxti " name="msg" placeholder="Message"></textarea>
+            </div>
+            <input type="checkbox"/>Terms and conditions
+            <div class="input-group mb-3 input">
+                <input type="submit" value="save" class=" btn btn-primary   mt-2" style="width:100%; height:40px;"/>
+            </div>
+            <div class="row text-center">
+                <div class="col-sm-6">Already a member?</div>
+                <div class="col-sm-6 text-center">Go To <a class="text-center" href="/user/signin/">Sign in</a></div>
+
+            </div>
+
+
+
+
+        </form>
+
+    </div>
+    <div class="col-sm-1"></div>
+
+</div>
+{%  endblock%}

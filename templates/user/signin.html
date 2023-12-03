@@ -1,0 +1,46 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<style>
+    .bder{
+    border-left:0px;
+    border-right:0px;
+    border-bottom:3px solid #FF8800;
+    border-top:0px;
+    background:transparent;
+    }
+    .backgrnd{
+    height:425px;
+    padding:50px 50px;
+    }
+    .loform{
+    background:url('{% static "images/shopping1.jpg" %}');
+    background-size:100% 100%;
+    height:425px;
+    width:100%;
+    }
+
+</style>
+<div class="row">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-5">
+       <form method="post" class="bg-dark t backgrnd">
+           {% csrf_token %}
+           <H3 class="text-center text-light mb-5">Login <i class="fa-solid fa-right-to-bracket txt_wcolor"></i></H3>
+    <input type="emai" class="form-control bder text-warning" name="email"   required placeholder="Enter your email"/><br/>
+    <input type="password" class="form-control bder text-warning" name="passwd" required placeholder="Enter your password"/><br/>
+    <input type="submit" value="LOGIN" class ="form-control bder text-light w-25 btn mt-3 text-warning"><br>
+           <span type="button" class=" btn btn-outline-warning mt-4 mx-3 " ><a class="text-light"style="text-decoration:none" >Login with facebook</a></span>
+           <span type="button" class=" btn btn-outline-warning mt-4 "><a class="text-warning" style="text-decoration:none;">Login with facebook</a></span>
+</form>
+    </div>
+    <div class="col-sm-5">
+        <div class="row">
+            <div class="col-sm-12 loform"> </div>
+        </div>
+    </div>
+    <div class="col-sm-1"></div>
+</div>
+
+{% endblock %}
